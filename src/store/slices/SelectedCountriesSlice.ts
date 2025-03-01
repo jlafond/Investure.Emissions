@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Option } from "../../types";
 
 interface CountryOptionsState{
-    CountryOptions: Option[]
+    CountryOptions: string[]
 }
 
 const initialState: CountryOptionsState = {
@@ -15,7 +15,7 @@ export const CountrySelectedSlice = createSlice({
     reducers: {
         setCountryOptions:(state, action: PayloadAction<{ options: Option[] }>) => 
          {
-             state.CountryOptions = action.payload.options
+             state.CountryOptions = action.payload.options.map(option=> option.label)
         },
     },
   });

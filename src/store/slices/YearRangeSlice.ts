@@ -5,7 +5,7 @@ interface YearRangeState{
 }
 
 const initialState: YearRangeState = {
-    YearRange: [0,0]
+    YearRange: [1974,2023]
 };
 
 export const YearRangeSlice = createSlice({

@@ -14,7 +14,7 @@
     }
     
     &__track {
-        background: #ddd;
+        background: var(--main-theme-accent-main-color);
         position: relative;
         flex-grow: 1;
         height: 4px;
@@ -23,7 +23,7 @@
 
     &__range {
         position: absolute;
-        background: #007bff;
+        background: var(--main-theme-background-color-compliment);
         border-radius: 2px;
         height: 100%;
     }
@@ -33,7 +33,7 @@
         display: block;
         width: 16px;
         height: 16px;
-        background: #007bff;
+        background: var(--main-theme-background-color-compliment);
         border-radius: 50%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         cursor: grab;

@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../store/store";
 import { setYearRangeInStore } from "../../store/slices/YearRangeSlice";
 
 const YearRangeSlider = () => {
-  const [yearRange, setYearRange] = useState<[number, number]>([1972, 2022]);
+  const [yearRange, setYearRange] = useState<[number, number]>([1974, 2023]);
   const dispatch = useAppDispatch();
 
   const handleChange = (value: [number, number]) => {
@@ -21,8 +21,8 @@ const YearRangeSlider = () => {
         className="slider__root"
         value={yearRange}
         onValueChange={handleChange}
-        min={1972}
-        max={2022}
+        min={1974}
+        max={2023}
         step={1}
       >
         <Slider.Track className="slider__track">

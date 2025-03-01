@@ -3,7 +3,11 @@ import MultiSelect from "../multi-selecter";
 import YearRangeSlider from "../year-slider";
 import "./styles.scss";
 
-const ContentMenu = () => {
+interface ContentMenuProps {
+    onButtonClick: () => void;
+  }
+
+const ContentMenu: React.FC<ContentMenuProps> = ({ onButtonClick }) => {
 
     return (
         <div className="content_menu">
@@ -19,7 +23,7 @@ const ContentMenu = () => {
                 </div>
                 <YearRangeSlider/>
             </div>
-            <div className="content_menu__go_container">
+            <div onClick={onButtonClick} className="content_menu__go_container">
                 <MdSend  size={30}/>
             </div>
         </div>
