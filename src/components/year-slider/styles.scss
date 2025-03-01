@@ -1,0 +1,41 @@
+.slider{
+
+    &__selected{
+        color: var(--main-theme-light-text-color);
+        text-align: center;
+    }
+
+    &__root {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        touch-action: none;
+    }
+    
+    &__track {
+        background: #ddd;
+        position: relative;
+        flex-grow: 1;
+        height: 4px;
+        border-radius: 2px;
+    }
+
+    &__range {
+        position: absolute;
+        background: #007bff;
+        border-radius: 2px;
+        height: 100%;
+    }
+
+    &__thumb {
+        all: unset;
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: #007bff;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: grab;
+      }
+}

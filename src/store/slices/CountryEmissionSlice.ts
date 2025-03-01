@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+//import type { PayloadAction } from '@reduxjs/toolkit'
 import { COUNTRY_DICTIONARY } from "../../constants"
 import { CountryEmission, EmissionByYear } from '../../types'
 
@@ -38,13 +38,7 @@ export const CountryEmissionSlice = createSlice({
     name: 'Country',
     initialState,
     reducers:{
-        // addCountryData:(state, action: PayloadAction<{ countryData: CountryEmission }>) => 
-        // {
-        //     state.Countries.push({
-        //         name: action.payload.countryData.name,
-        //         values: action.payload.countryData.values
-        //     }); 
-        // },
+
     },
     extraReducers:(builder)=>{
         builder.addCase(fetchCountries.fulfilled,(state,action)=>{

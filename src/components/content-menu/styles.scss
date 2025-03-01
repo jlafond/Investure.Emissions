@@ -1,0 +1,31 @@
+.content_menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    
+    &__dropdown_container,&__slider_container{
+        width: 35%;
+        height: 75px;
+        background-color: var(--main-theme-main-color);
+        border-radius: 10px;
+        box-shadow: var(--main-theme-box-shadow);
+        padding: 5px 20px;
+
+        &__header{
+            color: var(--main-theme-light-text-color);
+        }
+    }
+
+    &__go_container{
+        width: 75px;
+        height: 75px;
+        box-shadow: var(--main-theme-box-shadow);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--main-theme-main-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}

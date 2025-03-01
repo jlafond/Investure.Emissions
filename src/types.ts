@@ -12,3 +12,5 @@ export interface StringDictionary {
     key: string; 
     value: string;
 }
+
+export type Option = { value: string; label: string };

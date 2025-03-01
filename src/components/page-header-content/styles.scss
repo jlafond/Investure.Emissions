@@ -1,0 +1,11 @@
+.wrapper{
+    padding: 10px 20px;
+
+    span{
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: .3rem;
+        text-transform: capitalize;
+        color: var(--main-theme-light-text-color);
+    }
+}

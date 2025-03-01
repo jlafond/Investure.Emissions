@@ -4,11 +4,12 @@ import './index.scss'
 import App from './App.tsx'
 import { store } from './store/store.ts'
 import { Provider } from "react-redux";
+import { ApiProvider } from '@reduxjs/toolkit/query/react'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+          <App />
+      </Provider>
   </StrictMode>,
 )
