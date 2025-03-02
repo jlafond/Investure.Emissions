@@ -1,3 +1,10 @@
 .line_chart{
     padding: 1%;
 }
+
+.line_chart_container{
+    height: 100%;
+    background-color: var(--main-theme-main-color);
+    border-radius: 10px;
+    box-shadow: var(--main-theme-box-shadow);
+}

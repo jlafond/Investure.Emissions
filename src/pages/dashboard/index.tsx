@@ -7,6 +7,7 @@ import { LineChart } from '../../components/line-race-chart'
 import "./styles.scss";
 import { Animate } from 'react-simple-animate'
 import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-chart'
+import { CountryStats } from '../../components/country-stats'
 
 
 
@@ -25,7 +26,7 @@ const Dashboard =()=>{
 
       return (
         <section id="dashboard" className="dashboard">
-            <PageHeaderContent headerText="Dashboard"/>
+            {/* <PageHeaderContent headerText="Dashboard"/> */}
             <ContentMenu onButtonClick={handleButtonClick} />
             {
                 isClicked && 
@@ -44,6 +45,7 @@ const Dashboard =()=>{
                             </div>
                         </div>
                     </div>
+                    <CountryStats />
                 </div>
             }
         </section>

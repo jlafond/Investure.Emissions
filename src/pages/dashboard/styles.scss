@@ -7,9 +7,6 @@
         &__line_chart{
             flex: 2;
             margin-top: 1%;
-            background-color: var(--main-theme-main-color);
-            border-radius: 10px;
-            box-shadow: var(--main-theme-box-shadow);
         }
         
         &__pie_charts{
@@ -18,6 +15,7 @@
             flex-direction: column; 
             gap: 10px;
             margin-top: 1%;
+            justify-content: space-around;
         
             &>div{
                 margin-top: 1%;

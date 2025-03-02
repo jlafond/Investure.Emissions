@@ -4,6 +4,7 @@ import { CountryEmission } from "../../types";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import "./styles.scss";
+import { MdHeight } from "react-icons/md";
 
 export const LineChart = () => {
     const [chartOptions, setChartOptions] = useState<any>({});
@@ -93,12 +94,12 @@ export const LineChart = () => {
     const shouldShow = countries.length > 0;
 
     return (
-        <div>
+        <div className={shouldShow ? "line_chart_container" : "hidden"} style={{height: "100%"}}>
           { shouldShow &&
             <ReactECharts
               key={JSON.stringify(chartOptions)}
               option={chartOptions}
-              style={{ height: "600px", width: "100%" }}
+              style={{ height: "100%", width: "100%" }}
               className="line_chart"
             />
           }

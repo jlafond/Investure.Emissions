@@ -25,8 +25,8 @@ export const PieChartYearAverage = () => {
         const totalYears = yearRange[1] - yearRange[0];
         return filteredData.map((country) => ({
           name: country.name,
-          value: country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1])
-                    .reduce((sum, record) => sum + record.value, 0) / totalYears,
+          value: (country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1])
+                .reduce((sum, record) => sum + record.value, 0) / totalYears).toFixed(4),
         }));
       }, [data, countries, yearRange]);
 
@@ -42,7 +42,7 @@ export const PieChartYearAverage = () => {
         },
         series: [
         {
-            name: "Countries",
+            name: "Country",
             type: 'pie',
             radius: ['40%', '70%'],
             avoidLabelOverlap: false,
@@ -62,10 +62,10 @@ export const PieChartYearAverage = () => {
         ],
     };
 
-    const shouldShow = countries.length > 1;
+    const shouldShow = countries.length > 0;
 
     return (
-        <div>
+        <div className={shouldShow ? "" : "hidden"}>
             { shouldShow && <ReactECharts className="pie_chart" option={options} style={{  }} /> }
         </div>
     );
@@ -107,7 +107,7 @@ export const PieChartYearSlider = () => {
         },
         series: [
         {
-            name: "Countries",
+            name: "Country",
             type: 'pie',
             radius: ['40%', '70%'],
             avoidLabelOverlap: false,
@@ -127,10 +127,10 @@ export const PieChartYearSlider = () => {
         ],
     };
 
-    const shouldShow = countries.length > 1;
+    const shouldShow = countries.length > 0;
 
     return (
-        <div>
+        <div className={shouldShow ? "" : "hidden"}>
             { shouldShow && 
                 <div>
                     <ReactECharts className="pie_chart" option={options} style={{  }} />
