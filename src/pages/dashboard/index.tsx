@@ -29,20 +29,20 @@ const Dashboard =()=>{
             <ContentMenu onButtonClick={handleButtonClick} />
             {
                 isClicked && 
-                <div className='dashboard__container'>
-                    <Animate play duration={.5} delay={0} start={{transform : "translateX(-1000px)"}} end={{transform : "translateX(0px)"}}>
-                        <div className='dashboard__container__line_chart'>
+                <div className='dashboard__container fade-in'>
+                    
+                        <div className='dashboard__container__line_chart '>
                             <LineChart />
                         </div>
-                    </Animate>
-                    <div className='dashboard__container__pie_charts'>
-                        <div className='dashboard__container__pie_charts__yearly_average'>
-                            <PieChartYearAverage />
+
+                        <div className='dashboard__container__pie_charts'>
+                            <div className='dashboard__container__pie_charts__yearly_average'>
+                                <PieChartYearAverage />
+                            </div>
+                            <div className='dashboard__container__pie_charts__by_year'>
+                                <PieChartYearSlider />
+                            </div>
                         </div>
-                        <div className='dashboard__container__pie_charts__by_year'>
-                            <PieChartYearSlider />
-                        </div>
-                    </div>
                 </div>
             }
         </section>

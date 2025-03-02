@@ -81,13 +81,19 @@ export const LineChart = () => {
       });
     }, [data, countries, yearRange]);
 
+    const shouldShow = countries.length > 0;
+
     return (
-        <ReactECharts
-          key={JSON.stringify(chartOptions)}
-          option={chartOptions}
-          style={{ height: "500px", width: "100%" }}
-          className="line_chart"
-        />
+        <div>
+          { shouldShow &&
+            <ReactECharts
+              key={JSON.stringify(chartOptions)}
+              option={chartOptions}
+              style={{ height: "500px", width: "100%" }}
+              className="line_chart"
+            />
+          }
+        </div>
       );
         
 

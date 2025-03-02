@@ -17,10 +17,14 @@ export const CustomSelectorStyles = {
     ...provided,
     borderColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-background-color").trim(),
     backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-background-color").trim(),
+    "&:hover": {
+      boxShadow: "0 2px 5px rgba(0, 0, 0, 1);",
+    }
   }),
   menu: (provided: any) => ({
     ...provided,
     backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-background-color").trim(),
+    boxShadow: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-box-shadow").trim(),
   }),
   option: (provided: any, state: any) => ({
     ...provided,
