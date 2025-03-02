@@ -1,0 +1,51 @@
+.country_stats_container {
+    
+    
+    &__selector_container{
+        margin: 1%;
+        width: 25%;
+    }
+
+    &__content{
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
+    
+        &__stat{
+            background-color: var(--main-theme-main-color);
+            border-radius: 10px;
+            box-shadow: var(--main-theme-box-shadow);
+            width: 15%;
+            padding: 20px;
+            margin: 1%;
+
+            &__header{
+                text-align: center;
+            }
+
+            &__container{
+
+                display: flex;
+
+                &__stat_container{
+                    flex: 1;
+                    display: block;
+
+                    &__year{
+                        font-size: small;
+                    }
+                }
+        
+                &__icon_container{
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center; 
+                }
+            }
+            
+        }
+    }
+
+    
+}

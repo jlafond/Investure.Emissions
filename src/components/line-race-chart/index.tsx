@@ -99,7 +99,7 @@ export const LineChart = () => {
             <ReactECharts
               key={JSON.stringify(chartOptions)}
               option={chartOptions}
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: "600px", width: "100%" }}
               className="line_chart"
             />
           }

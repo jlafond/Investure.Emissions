@@ -11,7 +11,6 @@ export const YearRangeSlider = () => {
   const dispatch = useAppDispatch();
 
   const handleChange = (value: [number, number]) => {
-    console.log(value);
     setYearRange(value);
     dispatch(setYearRangeInStore({ yearRange: value }));
   };

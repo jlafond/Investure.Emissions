@@ -1,12 +1,12 @@
 .content_menu{
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-around;
     
     
     &__dropdown_container,&__slider_container{
-        width: 43%;
-        height: 75px;
+        width: 40%;
+        height: auto;
         background-color: var(--main-theme-main-color);
         border-radius: 10px;
         box-shadow: var(--main-theme-box-shadow);
@@ -19,7 +19,7 @@
 
     &__go_container{
         width: 75px;
-        height: 75px;
+        height: auto;
         box-shadow: var(--main-theme-box-shadow);
         display: flex;
         justify-content: center;
