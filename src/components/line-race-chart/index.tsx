@@ -24,8 +24,6 @@ export const LineChart = () => {
       const flatData = Array.from(
         new Set(filteredData.flatMap((country) => country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1]).map((v) => v.year)))
       ).sort();
-
-      console.log(filteredData)
       
       const series = filteredData.map((country) => ({
         name: country.name,

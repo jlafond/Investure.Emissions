@@ -1,10 +1,12 @@
 import { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
 import "./styles.scss";
-import { useAppDispatch } from "../../store/store";
+import { RootState, useAppDispatch } from "../../store/store";
 import { setYearRangeInStore } from "../../store/slices/YearRangeSlice";
+import { useSelector } from "react-redux";
 
-const YearRangeSlider = () => {
+
+export const YearRangeSlider = () => {
   const [yearRange, setYearRange] = useState<[number, number]>([1974, 2023]);
   const dispatch = useAppDispatch();
 
@@ -35,4 +37,38 @@ const YearRangeSlider = () => {
   );
 };
 
-export default YearRangeSlider
+interface SliderProps {
+    onChange: (value: number) => void; // Callback function type
+  }
+
+export const YearSlider: React.FC<SliderProps> = ({ onChange }) => {
+
+    const yearRange: [number, number] = useSelector(
+        (state: RootState) => state.yearRange.YearRange
+    );
+
+    const [value, setValue] = useState([yearRange[1]]);
+
+    const handleValueChange = (newValue: number[]) => {
+        setValue(newValue);
+        onChange(newValue[0]);
+    };
+
+    return (
+        <div style={{  }}>
+            <Slider.Root
+                className="slider__root"
+                value={value}
+                onValueChange={handleValueChange}
+                min={yearRange[0]}
+                max={yearRange[1]}
+                step={1}
+            >
+                <Slider.Track className="slider__track">
+                <Slider.Range className="slider__range" />
+                </Slider.Track>
+                <Slider.Thumb className="slider__thumb" />
+            </Slider.Root>
+        </div>
+    );
+};

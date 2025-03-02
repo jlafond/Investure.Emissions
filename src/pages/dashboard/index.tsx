@@ -5,6 +5,9 @@ import ContentMenu from '../../components/content-menu'
 import PageHeaderContent from '../../components/page-header-content'
 import { LineChart } from '../../components/line-race-chart'
 import "./styles.scss";
+import { Animate } from 'react-simple-animate'
+import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-chart'
+
 
 
 const Dashboard =()=>{
@@ -26,8 +29,20 @@ const Dashboard =()=>{
             <ContentMenu onButtonClick={handleButtonClick} />
             {
                 isClicked && 
-                <div className='lineRaceChartContainer'>
-                    <LineChart />
+                <div className='dashboard__container'>
+                    <Animate play duration={.5} delay={0} start={{transform : "translateX(-1000px)"}} end={{transform : "translateX(0px)"}}>
+                        <div className='dashboard__container__line_chart'>
+                            <LineChart />
+                        </div>
+                    </Animate>
+                    <div className='dashboard__container__pie_charts'>
+                        <div className='dashboard__container__pie_charts__yearly_average'>
+                            <PieChartYearAverage />
+                        </div>
+                        <div className='dashboard__container__pie_charts__by_year'>
+                            <PieChartYearSlider />
+                        </div>
+                    </div>
                 </div>
             }
         </section>

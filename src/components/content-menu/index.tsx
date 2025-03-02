@@ -1,6 +1,6 @@
 import { MdSend } from "react-icons/md";
 import MultiSelect from "../multi-selecter";
-import YearRangeSlider from "../year-slider";
+import { YearRangeSlider } from "../year-slider";
 import "./styles.scss";
 
 interface ContentMenuProps {

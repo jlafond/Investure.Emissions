@@ -1,7 +1,55 @@
-.lineRaceChartContainer{
-    margin-top: 1%;
-    background-color: var(--main-theme-main-color);
-    border-radius: 10px;
-    box-shadow: var(--main-theme-box-shadow);
+.dashboard__container{
+
+    &__line_chart{
+        margin-top: 1%;
+        background-color: var(--main-theme-main-color);
+        border-radius: 10px;
+        box-shadow: var(--main-theme-box-shadow);
+    }
+    
+    &__pie_charts{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    
+        &>div{
+            margin-top: 1%;
+            width: 30%;
+            background-color: var(--main-theme-main-color);
+            border-radius: 10px;
+            box-shadow: var(--main-theme-box-shadow);
+        }
+    
+    }
+
 }
 
+@media only screen and (max-width: 1090px) {
+
+    .dashboard__container{
+        &__pie_charts{
+        
+            &>div{
+                margin-top: 1%;
+                width: 45%;
+            }
+        
+        }
+    }
+
+}
+
+@media only screen and (max-width: 800px){
+    .dashboard__container{
+        &__pie_charts{
+            
+            display: block;
+
+            &>div{
+                margin-top: 1%;
+                width: 100%;
+            }
+        
+        }
+    }
+}

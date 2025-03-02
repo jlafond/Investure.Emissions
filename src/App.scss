@@ -1,16 +1,11 @@
 .App {
   background-color: var(--main-theme-background-color);
-  display: flex;
   height: 100vh;
 
   &__main-page-content{
-    flex: 1;
     padding: 20px;
   }
 
-  .selectorContainer{
-    width: 500px;
-  }
 
 }
 
