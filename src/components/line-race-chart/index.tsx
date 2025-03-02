@@ -30,6 +30,13 @@ export const LineChart = () => {
         type: "line",
         showSymbol: false,
         smooth: true,
+        endLabel: {
+          show: true, 
+          formatter: "{a}",
+          color: "#f4f7fa", 
+          fontSize: 14, 
+          fontWeight: "bold", 
+        },
         emphasis: { focus: "series" },
         data: flatData.map((year) => {
           const value = country.values.find((v) => v.year === year)?.value || 0;
@@ -38,6 +45,8 @@ export const LineChart = () => {
       }));
 
       setChartOptions({
+          animationDuration: 2000,
+          animationEasing: "cubicInOut",
           title: {
             text: "Greenhouse Gas Emissions by Year",
             left: "center",
@@ -89,7 +98,7 @@ export const LineChart = () => {
             <ReactECharts
               key={JSON.stringify(chartOptions)}
               option={chartOptions}
-              style={{ height: "500px", width: "100%" }}
+              style={{ height: "600px", width: "100%" }}
               className="line_chart"
             />
           }

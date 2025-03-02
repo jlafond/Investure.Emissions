@@ -1,39 +1,60 @@
 .dashboard__container{
 
-    &__line_chart{
-        margin-top: 1%;
-        background-color: var(--main-theme-main-color);
-        border-radius: 10px;
-        box-shadow: var(--main-theme-box-shadow);
-    }
-    
-    &__pie_charts{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    
-        &>div{
+    &__top_container{
+        display: flex; 
+        gap: 10px; 
+        
+        &__line_chart{
+            flex: 2;
             margin-top: 1%;
-            width: 30%;
             background-color: var(--main-theme-main-color);
             border-radius: 10px;
             box-shadow: var(--main-theme-box-shadow);
         }
-    
-    }
-
+        
+        &__pie_charts{
+            flex: 1; 
+            display: flex;
+            flex-direction: column; 
+            gap: 10px;
+            margin-top: 1%;
+        
+            &>div{
+                margin-top: 1%;
+                background-color: var(--main-theme-main-color);
+                border-radius: 10px;
+                box-shadow: var(--main-theme-box-shadow);
+            }
+        }
+    }    
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 
 @media only screen and (max-width: 1090px) {
 
     .dashboard__container{
-        &__pie_charts{
-        
-            &>div{
-                margin-top: 1%;
-                width: 45%;
+        &__top_container{
+            display: block;
+            &__pie_charts{
+                display: flex;
+                flex-direction: row; 
+                justify-content: space-around;
+                &>div{
+                    margin-top: 1%;
+                    width: 45%;
+                }
+            
             }
-        
         }
     }
 
@@ -41,15 +62,17 @@
 
 @media only screen and (max-width: 800px){
     .dashboard__container{
-        &__pie_charts{
+        &__top_container{
+            &__pie_charts{
             
-            display: block;
-
-            &>div{
-                margin-top: 1%;
-                width: 100%;
+                display: block;
+    
+                &>div{
+                    margin-top: 1%;
+                    width: 100%;
+                }
+            
             }
-        
         }
     }
 }

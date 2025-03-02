@@ -30,12 +30,12 @@ const Dashboard =()=>{
             {
                 isClicked && 
                 <div className='dashboard__container fade-in'>
-                    
-                        <div className='dashboard__container__line_chart '>
+                    <div className='dashboard__container__top_container'>
+                        <div className='dashboard__container__top_container__line_chart '>
                             <LineChart />
                         </div>
 
-                        <div className='dashboard__container__pie_charts'>
+                        <div className='dashboard__container__top_container__pie_charts'>
                             <div className='dashboard__container__pie_charts__yearly_average'>
                                 <PieChartYearAverage />
                             </div>
@@ -43,6 +43,7 @@ const Dashboard =()=>{
                                 <PieChartYearSlider />
                             </div>
                         </div>
+                    </div>
                 </div>
             }
         </section>
