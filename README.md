@@ -17,17 +17,18 @@
   Please ensure download of NPM, current build is with version: 10.9.2
 
   From local folder run the following command from command line/terminal
-    > npm install
+  > npm install
   To download necessary dependencies.
 
   Then run command:
-    > npm run dev
+  > npm run dev
     
   At which point should build dependencies and run on given localhost port.
 
 ## Build Dependencies
 
   As given in the current dependencies in the package.json:
+      <code>
       @radix-ui/react-slider: ^1.2.3,
       @reduxjs/toolkit: ^2.6.0,
       echarts-for-react: ^3.0.2,
@@ -38,7 +39,8 @@
       react-select: ^5.10.0,
       react-switch: ^7.1.0,
       redux: ^5.0.1
-
+      </code>
+      
     As explained in the Design section. These were used out of their stability, ease of use, and interest of time.
 
     Trade-off: echarts-for-react was ultimately selected for the charts and graphs, there were others that had been considered (including chartjs) but ultimately settled on echarts as I believe it had the better graphs and designs I was looking for.
