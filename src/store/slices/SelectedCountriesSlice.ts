@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Option } from "../../types";
+import { Option } from "../../types/Option";
 
 interface CountryOptionsState{
     CountryOptions: string[]

@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Global Emissions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  This is a React+Typescript Vite application, used to visual global emissions over time.
 
-Currently, two official plugins are available:
+  Please find below details regarding design decisions, build dependencies, and future concepts and improvements.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Design
 
-## Expanding the ESLint configuration
+  To settle the ask for a modern looking dynamically responsive website, React+Typescipt Vite was use for construction and SCSS was used for the styling. This was chosen due to familiarity with the stack and in the interest of time could achieve the best possible result to resolve "primary focus of this web application should be to present a great modern-looking working user experience." and "As users adjust the filters, the application should dynamically update".
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  Also in the interest of time, some widely used popular prebuilt NPM components were used. This allowed for better flexibility and limited acrued tech debt as these components are fairly stable and easy to use in the cases presented here.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Local Runtime
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  To run locally, please clone repository.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  Please ensure download of NPM, current build is with version: 10.9.2
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+  From local folder run the following command from command line/terminal
+    > npm install
+  To download necessary dependencies.
+
+  Then run command:
+    > npm run dev
+    
+  At which point should build dependencies and run on given localhost port.
+
+## Build Dependencies
+
+  As given in the current dependencies in the package.json:
+      @radix-ui/react-slider: ^1.2.3,
+      @reduxjs/toolkit: ^2.6.0,
+      echarts-for-react: ^3.0.2,
+      react: ^19.0.0,
+      react-dom: ^19.0.0,
+      react-icons: ^5.5.0,
+      react-redux: ^9.2.0,
+      react-select: ^5.10.0,
+      react-switch: ^7.1.0,
+      redux: ^5.0.1
+
+    As explained in the Design section. These were used out of their stability, ease of use, and interest of time.
+
+    Trade-off: echarts-for-react was ultimately selected for the charts and graphs, there were others that had been considered (including chartjs) but ultimately settled on echarts as I believe it had the better graphs and designs I was looking for.
+
+## Future concepts and improvements
+  Plase find below some ideas and concepts I had considered. Ultimately in the interest of time and resolving the MVP ask requirements. A trade off was made to not include as part of the initial rollout.
+
+	- Ability to forecast and project future emissions
+	  - Based on trends projecting 5,10+ years out per country
+		  - Perhaps can incorporate different projection models
+			  - ai, internal calculations and algorithms, user input
+			    - User input can be something like "country X anticipates Y% increase/decrease in emissions over Z years"
+	
+	- Incorporate different data points
+	  - Current data set is fairly limited and does not tell the full story. Including more relevant data points can provide a better picture
+			- Consider population size, including population can give a better picture as far as emissions per capita. 
+			  - As it may be a bit unfair to compare China to France based solely on sum total given the population of china is >20x larger
+	
+			- Possibly land mass can be a point of interest.
+				- Consider countries Brazil and Indonesia, which have potentially negligeble population size differences but an over 4x land mass difference.
+				  - A graph or chart displaying the emissions per square mile can add an interesting wrinkle to the data
+	
+	- Better styling and responsiveness for mobile
+	  - currently optimized for desktop and tablet
+	  - functionality works on mobile screensizes but some styling work can be done

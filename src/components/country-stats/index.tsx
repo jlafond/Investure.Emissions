@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { CountryEmission } from "../../types";
 import { RootState } from "../../store/store";
 import { useMemo, useState } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
@@ -7,6 +6,7 @@ import { BiStats } from "react-icons/bi";
 import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
 import "./styles.scss";
 import { SingleSelect } from "../single-selector";
+import { CountryEmission } from "../../types/CountryEmission";
 
 
 export const CountryStats = () => {

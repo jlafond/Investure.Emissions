@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { CountryEmission, EmissionByYear, StringDictionary } from '../../types'
+import { EmissionByYear } from '../../types/EmissionByYear'
+import { CountryEmission } from '../../types/CountryEmission'
+import { StringDictionary } from '../../types/StringDictionary'
 
 interface CountryEmissionState{
     Countries: CountryEmission[]
@@ -29,7 +31,8 @@ export const fetchCountries = createAsyncThunk('country/fetch', async ()=>{
 
     for (const country of dictionary) {
         try{
-            const response = await fetch(`https://api.worldbank.org/v2/country/${country.key}/indicator/EN.GHG.ALL.MT.CE.AR5?format=json`);
+            const url = import.meta.env.VITE_WORLD_BANK_API_URL_TEMPLATE;
+            const response = await fetch(url.replace("{countryKey}", country.key));
             const data = await response.json();
         
             const emissionsData = data[1];

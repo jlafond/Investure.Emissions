@@ -1,10 +1,10 @@
 import "./styles.scss";
-import { CountryEmission } from "../../types";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { YearSlider } from "../year-slider";
+import { CountryEmission } from "../../types/CountryEmission";
 
 
 
@@ -39,9 +39,9 @@ export const PieChartYearAverage = () => {
     const shouldShow = countries.length > 0;
 
     return (
-        <div className={shouldShow ? "" : "hidden"}>
+        <>
             { shouldShow && <ReactECharts className="pie_chart" option={options} style={{  }} /> }
-        </div>
+        </>
     );
 
 }
@@ -75,14 +75,14 @@ export const PieChartYearSlider = () => {
     const shouldShow = countries.length > 0;
 
     return (
-        <div className={shouldShow ? "" : "hidden"}>
+        <>
             { shouldShow && 
                 <div>
                     <ReactECharts className="pie_chart" option={options} style={{  }} />
                     <YearSlider onChange={handleSliderChange} />
                 </div>
             }
-        </div>
+        </>
     );
 
 

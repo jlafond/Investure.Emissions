@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Select, { SingleValue } from "react-select"
 import makeAnimated from 'react-select/animated';
-import { Option } from "../../types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { Option } from "../../types/Option";
 
 interface SelectorProps {
     onChange: (value: string) => void; // Callback function type

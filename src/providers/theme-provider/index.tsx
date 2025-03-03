@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 type ThemeProviderProps = {
-    children: React.ReactNode; // Specify the type for 'children'
+    children: React.ReactNode;
   };
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
@@ -12,11 +12,9 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     const root = document.documentElement;
     if (theme === "dark") {
-      root.classList.add("dark-theme");
       root.classList.remove("light-theme");
     } else {
       root.classList.add("light-theme");
-      root.classList.remove("dark-theme");
     }
   }, [theme]);
 

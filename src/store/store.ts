@@ -6,9 +6,6 @@ import { YearRangeSlice } from "./slices/YearRangeSlice";
 import { combineReducers } from "redux";
 import { ThemeSlice } from "./slices/ThemeSlice";
 
-
-
-
 const rootReducer = combineReducers({
     countryEmissionData: CountryEmissionSlice.reducer,
     selectedCountries: CountrySelectedSlice.reducer,

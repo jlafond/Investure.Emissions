@@ -1,9 +1,9 @@
 import ReactECharts from "echarts-for-react";
 import { useEffect, useState } from "react";
-import { CountryEmission } from "../../types";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import "./styles.scss";
+import { CountryEmission } from "../../types/CountryEmission";
 
 export const LineChart = () => {
     const [chartOptions, setChartOptions] = useState<any>({});
@@ -97,7 +97,7 @@ export const LineChart = () => {
     const shouldShow = countries.length > 0;
 
     return (
-        <div className={shouldShow ? "line_chart_container" : "hidden"} style={{height: "100%"}}>
+        <div className="line_chart_container" style={{height: "100%"}}>
           { shouldShow &&
             <ReactECharts
               key={JSON.stringify(chartOptions) + theme}

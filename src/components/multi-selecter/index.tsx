@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Select, { MultiValue } from "react-select"
 import makeAnimated from 'react-select/animated';
-import { Option } from "../../types";
 import { RootState, useAppDispatch } from "../../store/store";
 import { setCountryOptions } from "../../store/slices/SelectedCountriesSlice";
 import { useSelector } from "react-redux";
+import { Option } from "../../types/Option";
 
 const animatedComponents = makeAnimated();
 

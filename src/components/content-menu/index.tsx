@@ -19,9 +19,6 @@ export const ContentMenu = () => {
                 </div>
                 <YearRangeSlider/>
             </div>
-            {/* <div onClick={onButtonClick} className="content_menu__go_container">
-                <MdSend  size={30}/>
-            </div> */}
         </div>
     )
 }
