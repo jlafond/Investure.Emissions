@@ -49,19 +49,19 @@
 ## Future concepts and improvements
   Please find below some ideas and concepts I had considered. Ultimately in the interest of time and resolving the MVP ask requirements. A trade off was made to not include as part of the initial rollout.
 
-	* Ability to forecast and project future emissions
+  * Ability to forecast and project future emissions
 	  * Based on trends projecting 5,10+ years out per country
 		  * Perhaps can incorporate different projection models
 			  * ai, internal calculations and algorithms, user input
 			    * User input can be something like "country X anticipates Y% increase/decrease in emissions over Z years"
 
-	* Incorporate different data points
+  * Incorporate different data points
 	  * Current data set is fairly limited and does not tell the full story. Including more relevant data points can provide a better picture
-			* Consider population size, including population can give a better picture as far as emissions per capita. 
+		  * Consider population size, including population can give a better picture as far as emissions per capita. 
 			  * As it may be a bit unfair to compare China to France based solely on sum total given the population of china is >20x larger
 	
-			* Possibly land mass can be a point of interest.
-				* Consider countries Brazil and Indonesia, which have potentially negligeble population size differences but an over 4x land mass difference.
+		  * Possibly land mass can be a point of interest.
+			  * Consider countries Brazil and Indonesia, which have potentially negligeble population size differences but an over 4x land mass difference.
 				  * A graph or chart displaying the emissions per square mile can add an interesting wrinkle to the data
 
   * Incorporate more countries
@@ -71,6 +71,6 @@
         * Can give emissions by region as opposed to country. Values would be given in aggregated sum by all countries for each region
     * *RISK* as country sets expand, will need to monitor how this impacts overall performance. Given current architecture pulls for all countries on dashboard page load and stores in redux. If expanded to global, will need to check the total size of the full data set and time to load globally.
 
-	* Better styling and responsiveness for mobile
-	  * currently optimized for desktop and tablet
+  * Better styling and responsiveness for mobile
+    * currently optimized for desktop and tablet
 	  * functionality works on mobile screensizes but some styling work can be done
