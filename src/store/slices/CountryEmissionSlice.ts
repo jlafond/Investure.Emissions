@@ -24,27 +24,50 @@ const GetCountryDictionary = (): StringDictionary[] => {
     }
 }
 
+interface PopulationData {
+    date: string;
+    value: number;
+  }
+  
+  interface EmissionData {
+    date: string;
+    value: number;
+  }
+
 export const fetchCountries = createAsyncThunk('country/fetch', async ()=>{
     let countryData: CountryEmission[] = [];
     
     let dictionary = GetCountryDictionary();
 
     for (const country of dictionary) {
-        try{
-            const url = import.meta.env.VITE_WORLD_BANK_API_URL_TEMPLATE;
-            const response = await fetch(url.replace("{countryKey}", country.key));
-            const data = await response.json();
-        
-            const emissionsData = data[1];
+        try
+        {
+            const emissionUrl = import.meta.env.VITE_WORLD_BANK_API_EMISSIONS_URL_TEMPLATE;
+            const emissionResponse = await fetch(emissionUrl.replace("{countryKey}", country.key));
+            const emissionResponseJson = await emissionResponse.json();
+            const emissionsData = emissionResponseJson[1];
 
-            const emissionValues: EmissionByYear[] = emissionsData.map((item: any) => ({
-                year: item.date,
-                value: item.value,
-            }));
+            const populationUrl = import.meta.env.VITE_WORLD_BANK_API_POPULATION_URL_TEMPLATE;
+            const populationResponse = await fetch(populationUrl.replace("{countryKey}", country.key));
+            const populationResponseJson = await populationResponse.json();
+            const populationData = populationResponseJson[1];
+
+            const combinedData: EmissionByYear[] = populationData.map((populationEntry: PopulationData) => {
+                const matchingEmission = emissionsData.find(
+                  (emissionEntry: EmissionData) => emissionEntry.date === populationEntry.date
+                );
+              
+                return {
+                  year: populationEntry.date,
+                  population: populationEntry.value,
+                  value: matchingEmission ? matchingEmission.value : 0,
+                  perCapita: ((matchingEmission ? matchingEmission.value : 0) / populationEntry.value) * 1000000
+                };
+              });
             
             const countryEmission: CountryEmission = {
                 name: country.value,
-                values: emissionValues,
+                values: combinedData,
             };
             countryData.push(countryEmission);
         }
