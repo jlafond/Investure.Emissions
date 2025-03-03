@@ -1,10 +1,9 @@
 import ReactECharts from "echarts-for-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CountryEmission } from "../../types";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import "./styles.scss";
-import { MdHeight } from "react-icons/md";
 
 export const LineChart = () => {
     const [chartOptions, setChartOptions] = useState<any>({});
