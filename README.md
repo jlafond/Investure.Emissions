@@ -18,6 +18,7 @@
 
   From local folder run the following command from command line/terminal
   > npm install
+  
   To download necessary dependencies.
 
   Then run command:
@@ -40,10 +41,10 @@
       react-switch: ^7.1.0,
       redux: ^5.0.1
       </code>
-      
-    As explained in the Design section. These were used out of their stability, ease of use, and interest of time.
 
-    Trade-off: echarts-for-react was ultimately selected for the charts and graphs, there were others that had been considered (including chartjs) but ultimately settled on echarts as I believe it had the better graphs and designs I was looking for.
+  As explained in the Design section. These were used out of their stability, ease of use, and interest of time.
+
+  Trade-off: echarts-for-react was ultimately selected for the charts and graphs, there were others that had been considered (including chartjs) but ultimately settled on echarts as I believe it had the better graphs and designs I was looking for.
 
 ## Future concepts and improvements
   Plase find below some ideas and concepts I had considered. Ultimately in the interest of time and resolving the MVP ask requirements. A trade off was made to not include as part of the initial rollout.
