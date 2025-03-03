@@ -8,7 +8,8 @@ import "./styles.scss";
 import { SingleSelect } from "../single-selector";
 import { CountryEmission } from "../../types/CountryEmission";
 
-
+// This component is used to return cards displaying high level aggregated emissions values (max, min, mean, median) 
+// for a selected country over the selected year range 
 export const CountryStats = () => {
 
     const data: CountryEmission[] = useSelector(
@@ -52,7 +53,7 @@ export const CountryStats = () => {
     const shouldShow = countries.length > 0;
 
     return(
-        <div>
+        <>
             {shouldShow &&
             <div className="country_stats_container">
                 <div className="country_stats_container__selector_container">
@@ -110,17 +111,19 @@ export const CountryStats = () => {
                                 <AiOutlineVerticalAlignMiddle className="country_stats_container__content__stat__container__icon_container__icon" color="#73c0de" size={32} />
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         }
-        </div>
-        
+        </>
     );
-
 }
 
+//Summary: 
+//  Function returns the maximum value from the array of CountryEmission 
+//  Based on the selected country and year range
+//  Params: Array of CountryEmission, country and year range to filter
+//  Returns: number value respresenting the maximum value given the constraints
 const GetMax = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
@@ -128,6 +131,11 @@ const GetMax = (data: CountryEmission[], selectedCountry: string, yearRange: num
     return filteredValues?.reduce((max, num) => (num > max ? num : max), -Infinity).toFixed(4) ?? 0;
 }
 
+//Summary: 
+//  Function returns the minimum value from the array of CountryEmission 
+//  Based on the selected country and year range
+//  Params: Array of CountryEmission, country and year range to filter
+//  Returns: number value respresenting the minimum value given the constraints
 const GetMin = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
@@ -135,6 +143,11 @@ const GetMin = (data: CountryEmission[], selectedCountry: string, yearRange: num
     return filteredValues?.reduce((min, num) => (num < min ? num : min), Infinity).toFixed(4) ?? 0;
 }
 
+//Summary: 
+//  Function returns the mean emissions value from the array of CountryEmission 
+//  Based on the selected country and year range
+//  Params: Array of CountryEmission, country and year range to filter
+//  Returns: number value respresenting the mean emissions  value given the constraints
 const GetMean = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
@@ -143,6 +156,11 @@ const GetMean = (data: CountryEmission[], selectedCountry: string, yearRange: nu
     return ((filteredValues?.length ?? 0) > 0 ? sum / (filteredValues?.length ?? 1) : 0).toFixed(4);
 }
 
+//Summary: 
+//  Function returns the median emissions value from the array of CountryEmission 
+//  Based on the selected country and year range
+//  Params: Array of CountryEmission, country and year range to filter
+//  Returns: number value respresenting the median emissions  value given the constraints
 const GetMedian = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])

@@ -4,7 +4,7 @@ import { ThemeToggle } from "../theme-toggle";
 const NavBar = () => {
 
     return (
-        <div>
+        <>
             <nav className={'navbar'}>
                 <div className="navbar__container">
                     <div className="navbar__header">
@@ -15,7 +15,7 @@ const NavBar = () => {
                     <ThemeToggle />
                 </div>  
             </nav>
-        </div>
+        </>
     )
 }
 

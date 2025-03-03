@@ -2,7 +2,6 @@ import './App.scss'
 import NavBar from './components/navbar'
 import Dashboard from './pages/dashboard'
 
-
 function App() {
   
   return (

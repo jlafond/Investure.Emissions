@@ -5,7 +5,6 @@ import { RootState, useAppDispatch } from "../../store/store";
 import { setYearRangeInStore } from "../../store/slices/YearRangeSlice";
 import { useSelector } from "react-redux";
 
-
 export const YearRangeSlider = () => {
   const [yearRange, setYearRange] = useState<[number, number]>([Number(import.meta.env.VITE_START_YEAR), Number(import.meta.env.VITE_END_YEAR)]);
   const dispatch = useAppDispatch();

@@ -8,15 +8,17 @@ import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-ch
 import { CountryStats } from '../../components/country-stats'
 import { useSelector } from 'react-redux'
 
-
-
-const Dashboard =()=>{
+//Dashboard landing page for application. 
+// Initial state gives set of filters: Countries and Years
+// Once Countries are select full dashboard is rendered. Based on length of selected countries.
+const Dashboard = () => {
 
     const countries: string[] = useSelector(
         (state: RootState) => state.selectedCountries.CountryOptions
     );
     const shouldShow = countries.length > 0;
 
+    //Download all relevant information asynchronously. Using Redux store.
     const dispatch = useAppDispatch()
       useEffect(()=>{
         dispatch(fetchCountries())
@@ -47,7 +49,6 @@ const Dashboard =()=>{
             }
         </section>
       )
-
 }
 
 export default Dashboard;

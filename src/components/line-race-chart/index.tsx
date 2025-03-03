@@ -48,50 +48,7 @@ export const LineChart = () => {
 
       const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
 
-      setChartOptions({
-          animationDuration: 2000,
-          animationEasing: "cubicOut",
-          title: {
-            text: "Greenhouse Gas Emissions by Year",
-            left: "center",
-            textStyle: { color: textColor }, 
-          },
-          tooltip: {
-            trigger: "axis", 
-          },
-          legend: {
-            top: "5%",
-            textStyle: { color: textColor }, 
-          },
-          xAxis: {
-            type: "category",
-            name: "Year",
-            nameLocation: "middle",
-            data: flatData,
-            nameTextStyle: {
-              fontSize: 14,
-              padding: 15,
-            },
-            axisLine: { lineStyle: { color: textColor } }, 
-            axisLabel: { color: textColor },
-          },
-          yAxis: {
-            type: "value",
-            axisLine: { lineStyle: { color: textColor } },
-            axisLabel: { color: textColor },
-          },
-          graphic: {
-            type: "text",
-            left: "center", 
-            bottom: "1%", 
-            style: {
-              text: "*Total greenhouse gas emissions excluding LULUCF (Mt CO2e)",
-              fontSize: 12,
-              fill: "gray",
-            },
-          },
-          series
-      });
+      setChartOptions(GetChartOptions(series, textColor, flatData));
     }, [data, countries, yearRange, theme]);
 
     const shouldShow = countries.length > 0;
@@ -108,6 +65,51 @@ export const LineChart = () => {
           }
         </div>
       );
-        
-
 }
+
+const GetChartOptions = (series: any, textColor: string, flatData: string[]) => (
+  {
+    animationDuration: 2000,
+    animationEasing: "cubicOut",
+    title: {
+      text: "Greenhouse Gas Emissions by Year",
+      left: "center",
+      textStyle: { color: textColor }, 
+    },
+    tooltip: {
+      trigger: "axis", 
+    },
+    legend: {
+      top: "5%",
+      textStyle: { color: textColor }, 
+    },
+    xAxis: {
+      type: "category",
+      name: "Year",
+      nameLocation: "middle",
+      data: flatData,
+      nameTextStyle: {
+        fontSize: 14,
+        padding: 15,
+      },
+      axisLine: { lineStyle: { color: textColor } }, 
+      axisLabel: { color: textColor },
+    },
+    yAxis: {
+      type: "value",
+      axisLine: { lineStyle: { color: textColor } },
+      axisLabel: { color: textColor },
+    },
+    graphic: {
+      type: "text",
+      left: "center", 
+      bottom: "1%", 
+      style: {
+        text: "*Total greenhouse gas emissions excluding LULUCF (Mt CO2e)",
+        fontSize: 12,
+        fill: "gray",
+      },
+    },
+    series
+  }
+)

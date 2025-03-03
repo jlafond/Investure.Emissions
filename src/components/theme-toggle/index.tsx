@@ -8,17 +8,18 @@ import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
 export const ThemeToggle = () => {
+
     const dispatch = useDispatch();
     const theme = useSelector((state: RootState) => state.theme.theme);
-    const [checked, setChecked] = useState(theme === 'light');
+    const [checked, setChecked] = useState(theme === 'light'); //default to user local storage theme
 
     const handleChange = () => {
-        setChecked(!checked)
-        dispatch(toggleTheme())
+        setChecked(!checked) //toggle component
+        dispatch(toggleTheme()) //set page theme
     };
 
     const handleChangeFake = () => {
-
+        //react-switch needed onChange event, intention was to handle click on entire component. When switch changes, do not want any further changes to occur.
     };
 
     return (
@@ -36,7 +37,7 @@ export const ThemeToggle = () => {
                 boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
                 activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
                 height={20}
-                width={48}
+                width={40}
             />
             <FaSun className="theme_toggle_container__item" size={20}/>
         </div>

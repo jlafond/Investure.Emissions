@@ -1,6 +1,6 @@
 # Global Emissions
 
-  This is a React+Typescript Vite application, used to visual global emissions over time.
+  This is a React+Typescript Vite application, used to visualize global emissions over time.
 
   Please find below details regarding design decisions, build dependencies, and future concepts and improvements.
 

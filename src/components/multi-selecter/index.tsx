@@ -6,13 +6,10 @@ import { setCountryOptions } from "../../store/slices/SelectedCountriesSlice";
 import { useSelector } from "react-redux";
 import { Option } from "../../types/Option";
 
-const animatedComponents = makeAnimated();
-
 export const MultiSelect = () => {
     
+  const animatedComponents = makeAnimated();
   const theme = useSelector((state: RootState) => state.theme.theme);
-
-  console.log(theme)
 
   const [selectedOptions, setSelectedOptions] = useState<MultiValue<Option>>([]);
   const dispatch = useAppDispatch();
@@ -34,7 +31,6 @@ export const MultiSelect = () => {
   };
 
   return (
-    <div>
       <Select
       options={CountrySelectorOptions}
       isMulti
@@ -43,9 +39,7 @@ export const MultiSelect = () => {
       components={animatedComponents}
       onChange={handleChange}
       styles={getCustomSelectorStyles(theme)}
-    />
-    </div>
-    
+    />    
   );
 }
 

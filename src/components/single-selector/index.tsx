@@ -6,7 +6,7 @@ import { RootState } from "../../store/store";
 import { Option } from "../../types/Option";
 
 interface SelectorProps {
-    onChange: (value: string) => void; // Callback function type
+    onChange: (value: string) => void;
   }
 
 export const SingleSelect: React.FC<SelectorProps> = ({ onChange }) => {
