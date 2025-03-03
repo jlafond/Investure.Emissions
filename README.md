@@ -64,6 +64,13 @@
 				- Consider countries Brazil and Indonesia, which have potentially negligeble population size differences but an over 4x land mass difference.
 				  - A graph or chart displaying the emissions per square mile can add an interesting wrinkle to the data
 	
+  - Incorporate more countries
+    - Adding more countries can expand and cascade into several other features, including but not limited to:
+      - Grouping of countries in analysis.
+        - Potentially can group by regions (Asia Pacific, Europe, North/South America) to display for all/some countries selected region
+        - Can give emissions by region as opposed to country. Values would be given in aggregated sum by all countries for each region
+    - *RISK* as country sets expand, will need to monitor how this impacts overall performance. Given current architecture pulls for all countries on dashboard page load and stores in redux. If expanded to global, will need to check the total size of the full data set and time to load globally.
+
 	- Better styling and responsiveness for mobile
 	  - currently optimized for desktop and tablet
 	  - functionality works on mobile screensizes but some styling work can be done
