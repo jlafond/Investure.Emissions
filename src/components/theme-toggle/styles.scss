@@ -1,0 +1,9 @@
+.theme_toggle_container{
+    display: flex;
+    cursor: pointer;
+
+    &__item{
+        margin: 5px;
+    }
+
+}

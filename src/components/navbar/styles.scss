@@ -16,7 +16,15 @@
         height: inherit;
         padding: 0px 20px;
         flex: 1;
+
+        &__items{
+            display: flex;
+            list-style: none;
+            text-align: center;
+        }
     }
+
+    
 
 }
 

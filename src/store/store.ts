@@ -4,12 +4,16 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux"
 import { CountrySelectedSlice } from "./slices/SelectedCountriesSlice";
 import { YearRangeSlice } from "./slices/YearRangeSlice";
 import { combineReducers } from "redux";
+import { ThemeSlice } from "./slices/ThemeSlice";
+
+
 
 
 const rootReducer = combineReducers({
     countryEmissionData: CountryEmissionSlice.reducer,
     selectedCountries: CountrySelectedSlice.reducer,
-    yearRange: YearRangeSlice.reducer
+    yearRange: YearRangeSlice.reducer,
+    theme: ThemeSlice.reducer
   });
 
 export const store=configureStore({

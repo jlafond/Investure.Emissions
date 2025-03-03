@@ -19,6 +19,8 @@ export const LineChart = () => {
         (state: RootState) => state.yearRange.YearRange
     );
 
+    const theme = useSelector((state: RootState) => state.theme.theme);
+
     useEffect(() => {
       const filteredData = data.filter(country => countries.some(item => item===country.name));
 
@@ -34,7 +36,7 @@ export const LineChart = () => {
         endLabel: {
           show: true, 
           formatter: "{a}",
-          color: "#f4f7fa", 
+          color: theme === "light" ? "#022d5b" : "#f4f7fa", 
           fontSize: 14, 
           fontWeight: "bold", 
         },
@@ -45,20 +47,22 @@ export const LineChart = () => {
         }),
       }));
 
+      const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
+
       setChartOptions({
           animationDuration: 2000,
-          animationEasing: "cubicInOut",
+          animationEasing: "cubicOut",
           title: {
             text: "Greenhouse Gas Emissions by Year",
             left: "center",
-            textStyle: { color: "#f4f7fa" }, 
+            textStyle: { color: textColor }, 
           },
           tooltip: {
             trigger: "axis", 
           },
           legend: {
             top: "5%",
-            textStyle: { color: "#f4f7fa" }, 
+            textStyle: { color: textColor }, 
           },
           xAxis: {
             type: "category",
@@ -69,13 +73,13 @@ export const LineChart = () => {
               fontSize: 14,
               padding: 15,
             },
-            axisLine: { lineStyle: { color: "#f4f7fa" } }, 
-            axisLabel: { color: "#f4f7fa" },
+            axisLine: { lineStyle: { color: textColor } }, 
+            axisLabel: { color: textColor },
           },
           yAxis: {
             type: "value",
-            axisLine: { lineStyle: { color: "#f4f7fa" } },
-            axisLabel: { color: "#f4f7fa" },
+            axisLine: { lineStyle: { color: textColor } },
+            axisLabel: { color: textColor },
           },
           graphic: {
             type: "text",
@@ -89,7 +93,7 @@ export const LineChart = () => {
           },
           series
       });
-    }, [data, countries, yearRange]);
+    }, [data, countries, yearRange, theme]);
 
     const shouldShow = countries.length > 0;
 
@@ -97,7 +101,7 @@ export const LineChart = () => {
         <div className={shouldShow ? "line_chart_container" : "hidden"} style={{height: "100%"}}>
           { shouldShow &&
             <ReactECharts
-              key={JSON.stringify(chartOptions)}
+              key={JSON.stringify(chartOptions) + theme}
               option={chartOptions}
               style={{ height: "600px", width: "100%" }}
               className="line_chart"

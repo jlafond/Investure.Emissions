@@ -20,47 +20,21 @@ export const PieChartYearAverage = () => {
         (state: RootState) => state.yearRange.YearRange
     );
 
+    const theme = useSelector((state: RootState) => state.theme.theme);
+    const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
+
+
     const pieData = useMemo(() => {
         const filteredData = data.filter(country => countries.some(item => item===country.name));
         const totalYears = yearRange[1] - yearRange[0];
         return filteredData.map((country) => ({
           name: country.name,
-          value: (country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1])
-                .reduce((sum, record) => sum + record.value, 0) / totalYears).toFixed(4),
+          value: Number((country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1])
+                .reduce((sum, record) => sum + record.value, 0) / totalYears).toFixed(4)),
         }));
       }, [data, countries, yearRange]);
 
-    const options = {
-        title: {
-            text: "Emissions Yearly Average",
-            left: "center",
-            textStyle: { color: "#f4f7fa" }, 
-        },
-        tooltip: {
-            trigger: "item",
-            formatter: "{a} <br/>{b}: {c} ({d}%)",
-        },
-        series: [
-        {
-            name: "Country",
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            data: pieData,
-            label: {
-                color: "#f4f7fa"
-              },
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
-
-        },
-        ],
-    };
+    const options = getCustomSliderOptions(textColor, "Emissions Yearly Average", pieData);
 
     const shouldShow = countries.length > 0;
 
@@ -73,8 +47,9 @@ export const PieChartYearAverage = () => {
 }
 
 export const PieChartYearSlider = () => {
-    const [sliderYear, setSliderYear] = useState(2023);
-
+    const [sliderYear, setSliderYear] = useState(Number(import.meta.env.VITE_END_YEAR));
+    const theme = useSelector((state: RootState) => state.theme.theme);
+    const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
     
     const handleSliderChange = (value: number) => {
         setSliderYear(value);
@@ -91,41 +66,11 @@ export const PieChartYearSlider = () => {
         const filteredData = data.filter(country => countries.some(item => item===country.name));
         return filteredData.map((country) => ({
           name: country.name,
-          value: country.values.find(data => Number(data.year) === sliderYear)?.value,
+          value: country.values.find(data => Number(data.year) === sliderYear)?.value ?? 0,
         }));
       }, [data, countries, sliderYear]);
 
-    const options = {
-        title: {
-            text: `Emissions For Year: ${sliderYear}`,
-            left: "center",
-            textStyle: { color: "#f4f7fa" }, 
-        },
-        tooltip: {
-            trigger: "item",
-            formatter: "{a} <br/>{b}: {c} ({d}%)",
-        },
-        series: [
-        {
-            name: "Country",
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            data: pieData,
-            label: {
-                color: "#f4f7fa"
-              },
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
-
-        },
-        ],
-    };
+    const options = getCustomSliderOptions(textColor, `Emissions For Year: ${sliderYear}`, pieData);
 
     const shouldShow = countries.length > 0;
 
@@ -142,3 +87,35 @@ export const PieChartYearSlider = () => {
 
 
 }
+
+const getCustomSliderOptions = (textColor: string, title: string, pieData: { name: string; value: number; }[]) => ({
+    title: {
+        text: title,
+        left: "center",
+        textStyle: { color: textColor }, 
+    },
+    tooltip: {
+        trigger: "item",
+        formatter: "{b}: {c} ({d}%)",
+    },
+    series: [
+    {
+        name: "Country",
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        data: pieData,
+        label: {
+            color: textColor
+          },
+        emphasis: {
+            itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+            },
+        },
+
+    },
+    ],
+});

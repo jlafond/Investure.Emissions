@@ -5,7 +5,7 @@ interface YearRangeState{
 }
 
 const initialState: YearRangeState = {
-    YearRange: [1974,2023]
+    YearRange: [Number(import.meta.env.VITE_START_YEAR),Number(import.meta.env.VITE_END_YEAR)]
 };
 
 export const YearRangeSlice = createSlice({

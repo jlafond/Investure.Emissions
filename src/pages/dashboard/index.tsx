@@ -1,23 +1,21 @@
-import { useEffect, useState } from 'react'
-import { store, useAppDispatch } from '../../store/store'
+import { useEffect } from 'react'
+import { RootState, useAppDispatch } from '../../store/store'
 import { fetchCountries } from '../../store/slices/CountryEmissionSlice'
-import ContentMenu from '../../components/content-menu'
-import PageHeaderContent from '../../components/page-header-content'
+import { ContentMenu } from '../../components/content-menu'
 import { LineChart } from '../../components/line-race-chart'
 import "./styles.scss";
-import { Animate } from 'react-simple-animate'
 import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-chart'
 import { CountryStats } from '../../components/country-stats'
+import { useSelector } from 'react-redux'
 
 
 
 const Dashboard =()=>{
 
-    const [isClicked, setIsClicked] = useState(false);
-
-    const handleButtonClick = () => {
-        setIsClicked(true);
-      };
+    const countries: string[] = useSelector(
+        (state: RootState) => state.selectedCountries.CountryOptions
+    );
+    const shouldShow = countries.length > 0;
 
     const dispatch = useAppDispatch()
       useEffect(()=>{
@@ -26,10 +24,9 @@ const Dashboard =()=>{
 
       return (
         <section id="dashboard" className="dashboard">
-            {/* <PageHeaderContent headerText="Dashboard"/> */}
-            <ContentMenu onButtonClick={handleButtonClick} />
+            <ContentMenu />
             {
-                isClicked && 
+                shouldShow && 
                 <div className='dashboard__container fade-in'>
                     <div className='dashboard__container__top_container'>
                         <div className='dashboard__container__top_container__line_chart '>

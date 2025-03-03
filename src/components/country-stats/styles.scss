@@ -1,5 +1,5 @@
 .country_stats_container {
-    
+
     
     &__selector_container{
         margin: 1%;
@@ -10,6 +10,7 @@
         display: flex;
         align-items: stretch;
         justify-content: space-around;
+        flex-wrap: wrap;
     
         &__stat{
             background-color: var(--main-theme-main-color);
@@ -46,6 +47,15 @@
             
         }
     }
-
-    
 }
+
+
+@media (max-width: 768px) {
+    .country_stats_container__content__stat {
+        width: 30%;
+    }
+    .country_stats_container__selector_container{
+        width: 100%;
+        margin-top: 3%;
+    }
+  }

@@ -1,13 +1,9 @@
-import { MdSend } from "react-icons/md";
-import MultiSelect from "../multi-selecter";
+import { MultiSelect } from "../multi-selecter";
 import { YearRangeSlider } from "../year-slider";
 import "./styles.scss";
 
-interface ContentMenuProps {
-    onButtonClick: () => void;
-  }
 
-const ContentMenu: React.FC<ContentMenuProps> = ({ onButtonClick }) => {
+export const ContentMenu = () => {
 
     return (
         <div className="content_menu">
@@ -23,11 +19,9 @@ const ContentMenu: React.FC<ContentMenuProps> = ({ onButtonClick }) => {
                 </div>
                 <YearRangeSlider/>
             </div>
-            <div onClick={onButtonClick} className="content_menu__go_container">
+            {/* <div onClick={onButtonClick} className="content_menu__go_container">
                 <MdSend  size={30}/>
-            </div>
+            </div> */}
         </div>
     )
 }
-
-export default ContentMenu;

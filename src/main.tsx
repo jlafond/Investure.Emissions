@@ -4,12 +4,14 @@ import './index.scss'
 import App from './App.tsx'
 import { store } from './store/store.ts'
 import { Provider } from "react-redux";
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
+import ThemeProvider from './providers/theme-provider/index.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <Provider store={store}>
-          <App />
+        <ThemeProvider>
+        <App />
+        </ThemeProvider>
       </Provider>
   </StrictMode>,
 )

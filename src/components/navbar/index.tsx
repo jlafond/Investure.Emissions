@@ -1,4 +1,5 @@
 import "./styles.scss";
+import { ThemeToggle } from "../theme-toggle";
 
 const NavBar = () => {
 
@@ -8,8 +9,11 @@ const NavBar = () => {
                 <div className="navbar__container">
                     <div className="navbar__header">
                         Greenhouse Emissions
-                    </div>                      
+                    </div>           
                 </div>
+                <div className="navbar__container__items">
+                    <ThemeToggle />
+                </div>  
             </nav>
         </div>
     )

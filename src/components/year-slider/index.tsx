@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 
 export const YearRangeSlider = () => {
-  const [yearRange, setYearRange] = useState<[number, number]>([1974, 2023]);
+  const [yearRange, setYearRange] = useState<[number, number]>([Number(import.meta.env.VITE_START_YEAR), Number(import.meta.env.VITE_END_YEAR)]);
   const dispatch = useAppDispatch();
 
   const handleChange = (value: [number, number]) => {
@@ -22,8 +22,8 @@ export const YearRangeSlider = () => {
         className="slider__root"
         value={yearRange}
         onValueChange={handleChange}
-        min={1974}
-        max={2023}
+        min={Number(import.meta.env.VITE_START_YEAR)}
+        max={Number(import.meta.env.VITE_END_YEAR)}
         step={1}
       >
         <Slider.Track className="slider__track">
