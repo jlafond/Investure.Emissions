@@ -74,31 +74,3 @@ const getCustomSelectorStyles = (theme: "light" | "dark") => ({
     color: theme === "light" ? "#022d5b" : "#f4f7fa",
   })
 });
-
-const CustomSelectorStyles = {
-    control: (provided: any) => ({
-      ...provided,
-      boxShadow: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-box-shadow").trim(),
-      borderColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-main-color").trim(),
-      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-main-color").trim(),
-      "&:hover": {
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 1);",
-      }
-    }),
-    menu: (provided: any) => ({
-      ...provided,
-      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-main-color").trim(),
-      boxShadow: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-box-shadow").trim(),
-    }),
-    option: (provided: any, state: any) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? getComputedStyle(document.documentElement).getPropertyValue("--main-theme-background-color").trim() 
-        : getComputedStyle(document.documentElement).getPropertyValue("--main-theme-main-color").trim(),
-      color: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-light-text-color").trim(),
-    }),
-    singleValue: (provided: any) => ({
-      ...provided,
-      backgroundColor: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-main-color").trim(),
-      color: getComputedStyle(document.documentElement).getPropertyValue("--main-theme-light-text-color").trim(),
-    })
-  };
