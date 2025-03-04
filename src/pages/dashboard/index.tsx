@@ -8,6 +8,7 @@ import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-ch
 import { CountryStats } from '../../components/country-stats'
 import { useSelector } from 'react-redux'
 import EmissionTable from '../../components/dashboard-table'
+import { CountryEmission } from '../../types/CountryEmission'
 
 //Dashboard landing page for application. 
 // Initial state gives set of filters: Countries and Years
@@ -17,7 +18,11 @@ const Dashboard = () => {
     const countries: string[] = useSelector(
         (state: RootState) => state.selectedCountries.CountryOptions
     );
+    const data: CountryEmission[] = useSelector(
+        (state: RootState) => state.countryEmissionData.Countries
+    );
     const shouldShow = countries.length > 0;
+    const isLoaded = data.length > 0; //Show loading dots
 
     //Download all relevant information asynchronously. Using Redux store.
     const dispatch = useAppDispatch()
@@ -30,6 +35,7 @@ const Dashboard = () => {
             <ContentMenu />
             {
                 shouldShow && 
+                (isLoaded ?
                 <div className='dashboard__container fade-in'>
                     <div className='dashboard__container__top_container'>
                         <div className='dashboard__container__top_container__line_chart '>
@@ -48,6 +54,12 @@ const Dashboard = () => {
                     <CountryStats />
                     <EmissionTable />
                 </div>
+                :
+                <div className='dashboard__loading'>
+                    <span className='dashboard__loading__dots'></span>
+                    <span className='dashboard__loading__dots'></span>
+                    <span className='dashboard__loading__dots'></span>
+                </div>)
             }
         </section>
       )
