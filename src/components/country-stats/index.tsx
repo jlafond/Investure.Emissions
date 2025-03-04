@@ -46,7 +46,6 @@ export const CountryStats = () => {
     return GetMin(data, selectedCountry, yearRange, isPerCapita);
     }, [data, selectedCountry, yearRange, isPerCapita]);
 
-    console.log(data.find(item => item.name === selectedCountry)?.values)
     const minYear = isPerCapita ? 
         data.find(item => item.name === selectedCountry)?.values.find(v => v.perCapita === Number(min))?.year ?? 0
         :

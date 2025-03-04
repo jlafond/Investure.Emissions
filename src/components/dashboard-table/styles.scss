@@ -1,5 +1,5 @@
 .table-container {
-    padding: 1rem;
+    padding-bottom: 1rem;
     background-color: var(--main-theme-main-color);
     border-radius: 10px;
     box-shadow: var(--main-theme-box-shadow);
@@ -12,7 +12,7 @@
             &__column{
                 &__header{
                     padding: 10px;
-                    border: 1px solid var(--main-theme-light-text-color);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                     text-align: center;
                     font-weight: bold;
                 }
@@ -26,7 +26,7 @@
                 }
                 &__column{
                     padding: 10px;
-                    border: 1px solid var(--main-theme-light-text-color);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                     text-align: center;
                 }
 

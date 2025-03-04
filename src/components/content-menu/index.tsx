@@ -14,8 +14,6 @@ export const ContentMenu = () => {
     const isPerCapita = useSelector((state: RootState) => state.isPerCapita.isPerCapita);
     const [checked, setChecked] = useState(isPerCapita); //default to user local storage theme
 
-    console.log(checked);
-
     const handleChange = () => {
             setChecked(!checked) //toggle component
             dispatch(togglePerCapita()) //set page theme
