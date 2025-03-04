@@ -5,12 +5,14 @@ import { CountrySelectedSlice } from "./slices/SelectedCountriesSlice";
 import { YearRangeSlice } from "./slices/YearRangeSlice";
 import { combineReducers } from "redux";
 import { ThemeSlice } from "./slices/ThemeSlice";
+import { IsPerCapitaSlice } from "./slices/IsPerCapitaSlice";
 
 const rootReducer = combineReducers({
     countryEmissionData: CountryEmissionSlice.reducer,
     selectedCountries: CountrySelectedSlice.reducer,
     yearRange: YearRangeSlice.reducer,
-    theme: ThemeSlice.reducer
+    theme: ThemeSlice.reducer,
+    isPerCapita: IsPerCapitaSlice.reducer
   });
 
 export const store=configureStore({

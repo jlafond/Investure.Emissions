@@ -42,26 +42,19 @@ export const fetchCountries = createAsyncThunk('country/fetch', async ()=>{
     for (const country of dictionary) {
         try
         {
-            const emissionUrl = import.meta.env.VITE_WORLD_BANK_API_EMISSIONS_URL_TEMPLATE;
-            const emissionResponse = await fetch(emissionUrl.replace("{countryKey}", country.key));
-            const emissionResponseJson = await emissionResponse.json();
-            const emissionsData = emissionResponseJson[1];
+            const emissionsData = await GetEmissionData(country.key);
+            const populationData = await GetPopulationData(country.key);
 
-            const populationUrl = import.meta.env.VITE_WORLD_BANK_API_POPULATION_URL_TEMPLATE;
-            const populationResponse = await fetch(populationUrl.replace("{countryKey}", country.key));
-            const populationResponseJson = await populationResponse.json();
-            const populationData = populationResponseJson[1];
-
-            const combinedData: EmissionByYear[] = populationData.map((populationEntry: PopulationData) => {
-                const matchingEmission = emissionsData.find(
-                  (emissionEntry: EmissionData) => emissionEntry.date === populationEntry.date
+            const combinedData: EmissionByYear[] = emissionsData.map((emissionEntry: EmissionData) => {
+                const matchingPopulation = populationData.find(
+                  (populationEntry: PopulationData) => emissionEntry.date === populationEntry.date
                 );
               
                 return {
-                  year: populationEntry.date,
-                  population: populationEntry.value,
-                  value: matchingEmission ? matchingEmission.value : 0,
-                  perCapita: ((matchingEmission ? matchingEmission.value : 0) / populationEntry.value) * 1000000
+                  year: emissionEntry.date,
+                  population: matchingPopulation ? matchingPopulation.value : 1,
+                  value: emissionEntry.value,
+                  perCapita: Number(((emissionEntry.value / (matchingPopulation ? matchingPopulation.value : 1)) * 1000000).toFixed(4))
                 };
               });
             
@@ -91,5 +84,18 @@ export const CountryEmissionSlice = createSlice({
     }
 })
 
+const GetEmissionData = async (country:string): Promise<EmissionData[]> => {
+    const emissionUrl = import.meta.env.VITE_WORLD_BANK_API_EMISSIONS_URL_TEMPLATE;
+    const emissionResponse = await fetch(emissionUrl.replace("{countryKey}", country));
+    const emissionResponseJson = await emissionResponse.json();
+    return emissionResponseJson[1];
+}
+
+const GetPopulationData = async (country:string): Promise<EmissionData[]> => {
+    const populationUrl = import.meta.env.VITE_WORLD_BANK_API_POPULATION_URL_TEMPLATE;
+    const populationResponse = await fetch(populationUrl.replace("{countryKey}", country));
+    const populationResponseJson = await populationResponse.json();
+    return populationResponseJson[1];
+}
+
 export default CountryEmissionSlice.reducer;
-// export const  { addCountryData } = CountryEmissionSlice.actions;

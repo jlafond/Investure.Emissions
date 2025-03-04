@@ -19,6 +19,9 @@ export const PieChartYearAverage = () => {
     const yearRange: [number, number] = useSelector(
         (state: RootState) => state.yearRange.YearRange
     );
+    const isPerCapita: boolean = useSelector(
+        (state: RootState) => state.isPerCapita.isPerCapita
+      );
 
     const theme = useSelector((state: RootState) => state.theme.theme);
     const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
@@ -30,9 +33,9 @@ export const PieChartYearAverage = () => {
         return filteredData.map((country) => ({
           name: country.name,
           value: Number((country.values.filter(data => Number(data.year) >= yearRange[0] && Number(data.year) <= yearRange[1])
-                .reduce((sum, record) => sum + record.value, 0) / totalYears).toFixed(4)),
+                .reduce((sum, record) => sum + (isPerCapita ? record.perCapita : record.value), 0) / totalYears).toFixed(4)) 
         }));
-      }, [data, countries, yearRange]);
+      }, [data, countries, yearRange, isPerCapita]);
 
     const options = getCustomSliderOptions(textColor, "Emissions Yearly Average", pieData);
 
@@ -61,14 +64,18 @@ export const PieChartYearSlider = () => {
     const countries: string[] = useSelector(
         (state: RootState) => state.selectedCountries.CountryOptions
     );
+    const isPerCapita: boolean = useSelector(
+        (state: RootState) => state.isPerCapita.isPerCapita
+      );
 
     const pieData = useMemo(() => {
         const filteredData = data.filter(country => countries.some(item => item===country.name));
         return filteredData.map((country) => ({
           name: country.name,
-          value: country.values.find(data => Number(data.year) === sliderYear)?.value ?? 0,
+          value: isPerCapita ? country.values.find(data => Number(data.year) === sliderYear)?.perCapita ?? 0 :
+                             country.values.find(data => Number(data.year) === sliderYear)?.value ?? 0,
         }));
-      }, [data, countries, sliderYear]);
+      }, [data, countries, sliderYear, isPerCapita]);
 
     const options = getCustomSliderOptions(textColor, `Emissions For Year: ${sliderYear}`, pieData);
 

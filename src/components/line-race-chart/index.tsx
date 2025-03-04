@@ -17,6 +17,9 @@ export const LineChart = () => {
     const yearRange: [number, number] = useSelector(
         (state: RootState) => state.yearRange.YearRange
     );
+    const isPerCapita: boolean = useSelector(
+      (state: RootState) => state.isPerCapita.isPerCapita
+    );
 
     const theme = useSelector((state: RootState) => state.theme.theme);
 
@@ -41,15 +44,15 @@ export const LineChart = () => {
         },
         emphasis: { focus: "series" },
         data: flatData.map((year) => {
-          const value = country.values.find((v) => v.year === year)?.value || 0;
+          const value = isPerCapita ? country.values.find((v) => v.year === year)?.perCapita || 0 : country.values.find((v) => v.year === year)?.value || 0;
           return value;
         }),
       }));
 
       const textColor = theme === "light" ? "#022d5b" : "#f4f7fa";
 
-      setChartOptions(GetChartOptions(series, textColor, flatData));
-    }, [data, countries, yearRange, theme]);
+      setChartOptions(GetChartOptions(series, textColor, flatData, isPerCapita));
+    }, [data, countries, yearRange, theme, isPerCapita]);
 
     const shouldShow = countries.length > 0;
 
@@ -67,7 +70,7 @@ export const LineChart = () => {
       );
 }
 
-const GetChartOptions = (series: any, textColor: string, flatData: string[]) => (
+const GetChartOptions = (series: any, textColor: string, flatData: string[], isPerCapita: boolean) => (
   {
     animationDuration: 2000,
     animationEasing: "cubicOut",
@@ -103,9 +106,9 @@ const GetChartOptions = (series: any, textColor: string, flatData: string[]) => 
     graphic: {
       type: "text",
       left: "center", 
-      bottom: "1%", 
+      bottom: "0", 
       style: {
-        text: "*Total greenhouse gas emissions excluding LULUCF (Mt CO2e)",
+        text: `*Total greenhouse gas emissions excluding LULUCF (Mt CO2e) ${isPerCapita ? "per 1 million residents" : ""}`,
         fontSize: 12,
         fill: "gray",
       },
