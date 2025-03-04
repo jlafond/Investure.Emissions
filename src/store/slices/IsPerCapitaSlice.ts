@@ -14,7 +14,6 @@ export const IsPerCapitaSlice = createSlice({
   reducers: {
     togglePerCapita(state) {
       state.isPerCapita = !state.isPerCapita;
-      console.log(state.isPerCapita)
     },
   },
 });
