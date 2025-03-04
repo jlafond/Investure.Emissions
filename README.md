@@ -8,6 +8,8 @@
 
   To settle the ask for a modern looking dynamically responsive website, React+Typescipt Vite was use for construction and SCSS was used for the styling. This was chosen due to familiarity with the stack and in the interest of time could achieve the best possible result to resolve "primary focus of this web application should be to present a great modern-looking working user experience." and "As users adjust the filters, the application should dynamically update".
 
+  Currently is built as a single page acting as a dashboard to display multiple data points, charts, and graphs from given user input. Page initially loads with only the filters, as countries are selected graphs, charts, table, and data points with appear and update as user updates selections. 
+
   Also in the interest of time, some widely used popular prebuilt NPM components were used. This allowed for better flexibility and limited acrued tech debt as these components are fairly stable and easy to use in the cases presented here.
 
 ## Local Runtime
@@ -32,6 +34,7 @@
       <code>
       @radix-ui/react-slider: ^1.2.3,
       @reduxjs/toolkit: ^2.6.0,
+      @tanstack/react-table: ^8.21.2,
       echarts-for-react: ^3.0.2,
       react: ^19.0.0,
       react-dom: ^19.0.0,

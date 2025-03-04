@@ -7,6 +7,7 @@ import "./styles.scss";
 import { PieChartYearAverage, PieChartYearSlider } from '../../components/pie-chart'
 import { CountryStats } from '../../components/country-stats'
 import { useSelector } from 'react-redux'
+import EmissionTable from '../../components/dashboard-table'
 
 //Dashboard landing page for application. 
 // Initial state gives set of filters: Countries and Years
@@ -45,6 +46,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <CountryStats />
+                    <EmissionTable />
                 </div>
             }
         </section>
