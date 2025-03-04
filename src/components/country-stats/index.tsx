@@ -23,6 +23,9 @@ export const CountryStats = () => {
     const yearRange: [number, number] = useSelector(
         (state: RootState) => state.yearRange.YearRange
     );
+    const isPerCapita: boolean = useSelector(
+        (state: RootState) => state.isPerCapita.isPerCapita
+      );
 
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
@@ -31,24 +34,31 @@ export const CountryStats = () => {
     }
 
     const max = useMemo(() => {
-        return GetMax(data, selectedCountry, yearRange);
-      }, [data, selectedCountry, yearRange]);
+        return GetMax(data, selectedCountry, yearRange, isPerCapita);
+      }, [data, selectedCountry, yearRange, isPerCapita]);
 
-    const maxYear = data.find(item => item.name === selectedCountry)?.values.find(v => v.value === Number(max))?.year ?? 0;
+    const maxYear = isPerCapita ? 
+        data.find(item => item.name === selectedCountry)?.values.find(v => v.perCapita === Number(max))?.year ?? 0
+        :
+        data.find(item => item.name === selectedCountry)?.values.find(v => v.value === Number(max))?.year ?? 0;
 
     const min = useMemo(() => {
-    return GetMin(data, selectedCountry, yearRange);
-    }, [data, selectedCountry, yearRange]);
+    return GetMin(data, selectedCountry, yearRange, isPerCapita);
+    }, [data, selectedCountry, yearRange, isPerCapita]);
 
-    const minYear = data.find(item => item.name === selectedCountry)?.values.find(v => v.value === Number(min))?.year ?? 0;
+    console.log(data.find(item => item.name === selectedCountry)?.values)
+    const minYear = isPerCapita ? 
+        data.find(item => item.name === selectedCountry)?.values.find(v => v.perCapita === Number(min))?.year ?? 0
+        :
+        data.find(item => item.name === selectedCountry)?.values.find(v => v.value === Number(min))?.year ?? 0; 
 
     const mean = useMemo(() => {
-    return GetMean(data, selectedCountry, yearRange);
-    }, [data, selectedCountry, yearRange]);
+    return GetMean(data, selectedCountry, yearRange, isPerCapita);
+    }, [data, selectedCountry, yearRange, isPerCapita]);
 
     const median = useMemo(() => {
-        return GetMedian(data, selectedCountry, yearRange);
-    }, [data, selectedCountry, yearRange]);
+        return GetMedian(data, selectedCountry, yearRange, isPerCapita);
+    }, [data, selectedCountry, yearRange, isPerCapita]);
 
     const shouldShow = countries.length > 0;
 
@@ -124,10 +134,10 @@ export const CountryStats = () => {
 //  Based on the selected country and year range
 //  Params: Array of CountryEmission, country and year range to filter
 //  Returns: number value respresenting the maximum value given the constraints
-const GetMax = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
+const GetMax = (data: CountryEmission[], selectedCountry: string, yearRange: number[], isPerCapita: boolean) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
-            .map(x => x.value);
+            .map(x => isPerCapita ? x.perCapita : x.value);
     return filteredValues?.reduce((max, num) => (num > max ? num : max), -Infinity).toFixed(4) ?? 0;
 }
 
@@ -136,10 +146,10 @@ const GetMax = (data: CountryEmission[], selectedCountry: string, yearRange: num
 //  Based on the selected country and year range
 //  Params: Array of CountryEmission, country and year range to filter
 //  Returns: number value respresenting the minimum value given the constraints
-const GetMin = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
+const GetMin = (data: CountryEmission[], selectedCountry: string, yearRange: number[], isPerCapita: boolean) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
-            .map(x => x.value);
+            .map(x => isPerCapita ? x.perCapita : x.value);
     return filteredValues?.reduce((min, num) => (num < min ? num : min), Infinity).toFixed(4) ?? 0;
 }
 
@@ -148,10 +158,10 @@ const GetMin = (data: CountryEmission[], selectedCountry: string, yearRange: num
 //  Based on the selected country and year range
 //  Params: Array of CountryEmission, country and year range to filter
 //  Returns: number value respresenting the mean emissions  value given the constraints
-const GetMean = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
+const GetMean = (data: CountryEmission[], selectedCountry: string, yearRange: number[], isPerCapita: boolean) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
-            .map(x => x.value);
+            .map(x => isPerCapita ? x.perCapita : x.value);
     const sum = filteredValues?.reduce((sum, num) => sum + num, 0) ?? 0;
     return ((filteredValues?.length ?? 0) > 0 ? sum / (filteredValues?.length ?? 1) : 0).toFixed(4);
 }
@@ -161,10 +171,10 @@ const GetMean = (data: CountryEmission[], selectedCountry: string, yearRange: nu
 //  Based on the selected country and year range
 //  Params: Array of CountryEmission, country and year range to filter
 //  Returns: number value respresenting the median emissions  value given the constraints
-const GetMedian = (data: CountryEmission[], selectedCountry: string, yearRange: number[]) => {
+const GetMedian = (data: CountryEmission[], selectedCountry: string, yearRange: number[], isPerCapita: boolean) => {
     const filteredValues = data.find(item => item.name === selectedCountry)?.values
             .filter(x => Number(x.year) >= yearRange[0] && Number(x.year) <= yearRange[1])
-            .map(x => x.value);
+            .map(x => isPerCapita ? x.perCapita : x.value);
     
     if (filteredValues == undefined || filteredValues.length === 0) return null;
 

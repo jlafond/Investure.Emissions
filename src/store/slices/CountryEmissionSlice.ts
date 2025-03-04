@@ -24,27 +24,43 @@ const GetCountryDictionary = (): StringDictionary[] => {
     }
 }
 
+interface PopulationData {
+    date: string;
+    value: number;
+  }
+  
+  interface EmissionData {
+    date: string;
+    value: number;
+  }
+
 export const fetchCountries = createAsyncThunk('country/fetch', async ()=>{
     let countryData: CountryEmission[] = [];
     
     let dictionary = GetCountryDictionary();
 
     for (const country of dictionary) {
-        try{
-            const url = import.meta.env.VITE_WORLD_BANK_API_URL_TEMPLATE;
-            const response = await fetch(url.replace("{countryKey}", country.key));
-            const data = await response.json();
-        
-            const emissionsData = data[1];
+        try
+        {
+            const emissionsData = await GetEmissionData(country.key);
+            const populationData = await GetPopulationData(country.key);
 
-            const emissionValues: EmissionByYear[] = emissionsData.map((item: any) => ({
-                year: item.date,
-                value: item.value,
-            }));
+            const combinedData: EmissionByYear[] = emissionsData.map((emissionEntry: EmissionData) => {
+                const matchingPopulation = populationData.find(
+                  (populationEntry: PopulationData) => emissionEntry.date === populationEntry.date
+                );
+              
+                return {
+                  year: emissionEntry.date,
+                  population: matchingPopulation ? matchingPopulation.value : 1,
+                  value: emissionEntry.value,
+                  perCapita: Number(((emissionEntry.value / (matchingPopulation ? matchingPopulation.value : 1)) * 1000000).toFixed(4))
+                };
+              });
             
             const countryEmission: CountryEmission = {
                 name: country.value,
-                values: emissionValues,
+                values: combinedData,
             };
             countryData.push(countryEmission);
         }
@@ -68,5 +84,18 @@ export const CountryEmissionSlice = createSlice({
     }
 })
 
+const GetEmissionData = async (country:string): Promise<EmissionData[]> => {
+    const emissionUrl = import.meta.env.VITE_WORLD_BANK_API_EMISSIONS_URL_TEMPLATE;
+    const emissionResponse = await fetch(emissionUrl.replace("{countryKey}", country));
+    const emissionResponseJson = await emissionResponse.json();
+    return emissionResponseJson[1];
+}
+
+const GetPopulationData = async (country:string): Promise<EmissionData[]> => {
+    const populationUrl = import.meta.env.VITE_WORLD_BANK_API_POPULATION_URL_TEMPLATE;
+    const populationResponse = await fetch(populationUrl.replace("{countryKey}", country));
+    const populationResponseJson = await populationResponse.json();
+    return populationResponseJson[1];
+}
+
 export default CountryEmissionSlice.reducer;
-// export const  { addCountryData } = CountryEmissionSlice.actions;

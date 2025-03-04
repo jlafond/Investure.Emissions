@@ -5,7 +5,7 @@
     
     
     &__dropdown_container,&__slider_container{
-        width: 45%;
+        width: 40%;
         height: auto;
         background-color: var(--main-theme-main-color);
         border-radius: 10px;
@@ -15,5 +15,22 @@
         &__header{
             color: var(--main-theme-light-text-color);
         }
-    }    
+    }
+    
+    &__perCapita_container{
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--main-theme-main-color);
+        box-shadow: var(--main-theme-box-shadow);
+        border-radius: 10px;
+        cursor: pointer;
+
+        &__title{
+            padding: 5px;
+        }
+    
+    }
 }

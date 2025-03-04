@@ -57,8 +57,8 @@
 
   * Incorporate different data points
 	  * Current data set is fairly limited and does not tell the full story. Including more relevant data points can provide a better picture
-		  * Consider population size, including population can give a better picture as far as emissions per capita. 
-			  * As it may be a bit unfair to compare China to France based solely on sum total given the population of china is >20x larger
+		  * ~~Consider population size, including population can give a better picture as far as emissions per capita.~~
+			  * ~~As it may be a bit unfair to compare China to France based solely on sum total given the population of china is >20x larger~~
 	
 		  * Possibly land mass can be a point of interest.
 			  * Consider countries Brazil and Indonesia, which have potentially negligeble population size differences but an over 4x land mass difference.
