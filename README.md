@@ -77,3 +77,6 @@
   * Better styling and responsiveness for mobile
     * currently optimized for desktop and tablet
 	  * functionality works on mobile screensizes but some styling work can be done
+  
+  * Unit testing, there are some functions and logic gates that could be easily unit testable
+    * Use Jest to unit test
